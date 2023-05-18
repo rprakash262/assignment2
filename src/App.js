@@ -44,7 +44,7 @@ function App({
         selectTaskbarItem={selectTaskbarItem}
         selectMenu={selectMenu}
       />
-      <ContentPane selectedTaskbarItem={selectedTaskbarItem} />
+      <ContentPane />
     </div>
   );
 }

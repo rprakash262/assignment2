@@ -72,7 +72,7 @@
 
 .linkStyle {
   display: flex;
-  textDecoration: none;
+  text-decoration: none;
   color: #fff;
   width: 100%;
   height: 45px;
@@ -89,4 +89,8 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+#contentPane h2 {
+  text-transform: capitalize;
 }

@@ -20,27 +20,6 @@ const getStyle2 = () => {
   }
 }
 
-const grid = 8;
-
-const getItemStyle = (isDragging, draggableStyle) => ({
-  // some basic styles to make the items look a bit nicer
-  userSelect: "none",
-  // padding: grid * 2,
-  // margin: `0 0 ${grid}px 0`,
-
-  // change background colour if dragging
-  // background: isDragging ? "lightgreen" : "grey",
-
-  // styles we need to apply on draggables
-  ...draggableStyle
-});
-
-const getListStyle = isDraggingOver => ({
-  // background: isDraggingOver ? "lightblue" : "lightgrey",
-  // padding: grid,
-  // width: 250
-});
-
 const Taskbar = ({
   selectMenu,
   taskbarItems,
@@ -53,7 +32,6 @@ const Taskbar = ({
 }) => {
 
   const reorder = (list, startIndex, endIndex) => {
-    // console.log({list, startIndex, endIndex})
     const result = Array.from(list);
     const [removed] = result.splice(startIndex, 1);
       result.splice(endIndex, 0, removed);
@@ -85,25 +63,19 @@ const Taskbar = ({
       <div className="oneTaskItem" onClick={selectMenu}>Menus</div>
       <DragDropContext onDragEnd={onDragEnd}>
         <Droppable droppableId="droppable">
-          {(provided, snapshot) => (
+          {provided => (
             <div
-              {...provided.droppableProps}
               ref={provided.innerRef}
-              // style={getListStyle(snapshot.isDraggingOver)}
+              {...provided.droppableProps}
             >
               {taskbarItems.map((item, index) => (
                 <Draggable key={item} draggableId={item} index={index}>
                   {(provided, snapshot) => (
                     <div
-                      // key={item}
                       className="oneTaskItemContainer"
                       ref={provided.innerRef}
                       {...provided.draggableProps}
                       {...provided.dragHandleProps}
-                      // style={getItemStyle(
-                      //   snapshot.isDragging,
-                      //   provided.draggableProps.style
-                      // )}
                     >
                       <div
                         className={`oneTaskItem ${selectedTaskbarItem === item ? 'selectedTaskbarItem' : ''}`}
@@ -118,6 +90,7 @@ const Taskbar = ({
                   )}
                 </Draggable>
               ))}
+              {provided.placeholder}
             </div>
           )}
         </Droppable>
