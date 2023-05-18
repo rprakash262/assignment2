@@ -17,7 +17,6 @@ function App({
   setTaskbarItem,
   controlsPaneItems,
   tempTaskbarItem,
-  // pinnedItems,
   pin,
   unpin,
 }) {
@@ -26,12 +25,10 @@ function App({
       <Taskbar
         selectMenu={selectMenu}
         taskbarItems={taskbarItems}
-        // allMenuItems={allMenuItems}
         setTaskbarItem={setTaskbarItem}
         selectedTaskbarItem={selectedTaskbarItem}
         selectTaskbarItem={selectTaskbarItem}
         tempTaskbarItem={tempTaskbarItem}
-        // pinnedItems={pinnedItems}
         pin={pin}
         unpin={unpin}
       />
@@ -57,7 +54,6 @@ const mapState = state => {
     selectedTaskbarItem,
     controlsPaneItems,
     tempTaskbarItem,
-    // pinnedItems,
   } = state.main;
 
   return {
@@ -67,7 +63,6 @@ const mapState = state => {
     selectedTaskbarItem,
     controlsPaneItems,
     tempTaskbarItem,
-    // pinnedItems,
   }
 }
 

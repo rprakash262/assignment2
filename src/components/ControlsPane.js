@@ -48,9 +48,7 @@ const ControlsPane = ({
         <Link
           key={item}
           style={linkStyle}
-          // onClick={(e) => selectControlsPaneItem(e, item)}
           to={`/${selectedTaskbarItem}/${item}`}
-          // to={{ pathname: `/${selectedTaskbarItem}/${item}`, query: { control: item } }}
         >
           {item}
         </Link>
