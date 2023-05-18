@@ -5,27 +5,78 @@ import Taskbar from './components/Taskbar';
 import ControlsPane from './components/ControlsPane';
 import ContentPane from './components/ContentPane';
 
-function App({  view}) {
-  console.log({view})
+import { ACTIONS } from './reducers/mainReducer';
+
+function App({
+  selectMenu,
+  taskbarItems,
+  allMenuItems,
+  controlsPaneView,
+  selectedTaskbarItem,
+  selectTaskbarItem,
+  setTaskbarItem,
+  controlsPaneItems,
+  tempTaskbarItem,
+  // pinnedItems,
+  pin,
+  unpin,
+}) {
   return (
     <div id="layout">
-      <Taskbar />
-      <ControlsPane />
-      <ContentPane />
+      <Taskbar
+        selectMenu={selectMenu}
+        taskbarItems={taskbarItems}
+        // allMenuItems={allMenuItems}
+        setTaskbarItem={setTaskbarItem}
+        selectedTaskbarItem={selectedTaskbarItem}
+        selectTaskbarItem={selectTaskbarItem}
+        tempTaskbarItem={tempTaskbarItem}
+        // pinnedItems={pinnedItems}
+        pin={pin}
+        unpin={unpin}
+      />
+      <ControlsPane
+        controlsPaneView={controlsPaneView}
+        taskbarItems={taskbarItems}
+        allMenuItems={allMenuItems}
+        controlsPaneItems={controlsPaneItems}
+        selectedTaskbarItem={selectedTaskbarItem}
+        selectTaskbarItem={selectTaskbarItem}
+        selectMenu={selectMenu}
+      />
+      <ContentPane selectedTaskbarItem={selectedTaskbarItem} />
     </div>
   );
 }
 
 const mapState = state => {
-  const { view } = state.main;
+  const {
+    controlsPaneView,
+    taskbarItems,
+    allMenuItems,
+    selectedTaskbarItem,
+    controlsPaneItems,
+    tempTaskbarItem,
+    // pinnedItems,
+  } = state.main;
 
   return {
-    view
+    controlsPaneView,
+    taskbarItems,
+    allMenuItems,
+    selectedTaskbarItem,
+    controlsPaneItems,
+    tempTaskbarItem,
+    // pinnedItems,
   }
 }
 
 const mapDispatch = {
-
+  selectMenu: ACTIONS.selectMenu,
+  selectTaskbarItem: ACTIONS.selectTaskbarItem,
+  setTaskbarItem: ACTIONS.setTaskbarItem,
+  pin: ACTIONS.pin,
+  unpin: ACTIONS.unpin,
 }
 
 export default connect(mapState, mapDispatch)(App);
