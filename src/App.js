@@ -1,25 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import { connect } from 'react-redux';
 
-function App() {
+import './App.css';
+import Taskbar from './components/Taskbar';
+import ControlsPane from './components/ControlsPane';
+import ContentPane from './components/ContentPane';
+
+function App({  view}) {
+  console.log({view})
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div id="layout">
+      <Taskbar />
+      <ControlsPane />
+      <ContentPane />
     </div>
   );
 }
 
-export default App;
+const mapState = state => {
+  const { view } = state.main;
+
+  return {
+    view
+  }
+}
+
+const mapDispatch = {
+
+}
+
+export default connect(mapState, mapDispatch)(App);
